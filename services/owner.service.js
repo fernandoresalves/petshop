@@ -1,4 +1,5 @@
 import OwnerRepository from "../repositories/owner.repository.js";
+import AnimalRepository from "../repositories/animal.repository.js";
 
 async function createOwner(owner) {
   return await OwnerRepository.insertOwner(owner);
@@ -9,7 +10,13 @@ async function updateOwner(owner) {
 }
 
 async function deleteOwner(id) {
-  // antes de excluir um proprietário, verificar se existem animais cadastrados para ele. Caso exista, bloquear a exclusão
+  const animals = await AnimalRepository.getAnimalsByOwner(id);
+  if (animals.length != 0) {
+    throw new Error(
+      "Não é possivel realizar a exclusão, esté propirtário possui animais."
+    );
+  }
+
   return await OwnerRepository.deleteOwner(id);
 }
 
