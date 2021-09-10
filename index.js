@@ -3,6 +3,7 @@ import cors from "cors";
 import logger from "./logger.js";
 import animalRouter from "./routes/animal.route.js";
 import ownerRouter from "./routes/owner.route.js";
+import serviceRouter from "./routes/service.route.js";
 
 const app = express();
 app.use(express.json());
@@ -10,6 +11,7 @@ app.use(cors());
 
 app.use("/animal", animalRouter);
 app.use("/proprietario", ownerRouter);
+app.use("/service", serviceRouter);
 
 app.use((error, req, res, next) => {
   logger.error(`${req.method} - ${req.baseUrl} - ${error.message}`);

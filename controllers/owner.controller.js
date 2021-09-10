@@ -18,9 +18,9 @@ async function createOwner(req, res, next) {
 async function updateOwner(req, res, next) {
   try {
     let owner = req.body;
-    if (!owner.proprietario_id || !owner.nome || !owner.telefone) {
+    if (!owner.proprietarioId || !owner.nome || !owner.telefone) {
       throw new Error(
-        "Os campos proprietario_id, nome e telephone são obrigatórios."
+        "Os campos proprietarioId, nome e telephone são obrigatórios."
       );
     }
 

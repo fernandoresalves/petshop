@@ -11,6 +11,7 @@ async function updateOwner(owner) {
 
 async function deleteOwner(id) {
   const animals = await AnimalRepository.getAnimalsByOwner(id);
+
   if (animals.length != 0) {
     throw new Error(
       "Não é possivel realizar a exclusão, esté propirtário possui animais."
